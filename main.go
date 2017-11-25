@@ -31,7 +31,7 @@ type Client struct {
 func main() {
 	client := NewClient("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 	defer client.ExitProcess()
-	client.Render("http://www.reddit.com")
+	client.Render("http://localhost:8081")
 
 }
 
@@ -67,16 +67,16 @@ func (c *Client) Render(url string) {
 	}
 	target.Subscribe("Page.loadEventFired", func(targ *gcd.ChromeTarget, v []byte) {
 		options := &gcdapi.PagePrintToPDFParams{
-			Landscape:               true,
-			DisplayHeaderFooter:     false,
-			PrintBackground:         true,
-			Scale:                   1.0,
-			PaperWidth:              8.5,
-			PaperHeight:             11,
-			MarginTop:               0.01,
-			MarginBottom:            0.01,
-			MarginLeft:              0.01,
-			MarginRight:             0.01,
+			Landscape:           true,
+			DisplayHeaderFooter: false,
+			PrintBackground:     true,
+			// Scale:               1.0,
+			// PaperWidth:              8.5,
+			// PaperHeight:             11,
+			MarginTop:               0.5,
+			MarginBottom:            0.5,
+			MarginLeft:              0.5,
+			MarginRight:             0.5,
 			PageRanges:              "",
 			IgnoreInvalidPageRanges: true,
 		}
